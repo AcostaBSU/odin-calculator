@@ -4,46 +4,51 @@
   <head>
     <meta charset="UTF-8">
     <title>Calculator</title>
+    <link rel="stylesheet" href="./style.css">
   </head>
   <body>
     <h1>Calculator</h1>
     <div class="calc-container">
-      <div class="display-container">
-        <div class="top-display">top display</div>
-	<div class="bottom-display">bottom display</div>
+      <div class="displays-container">
+        <div class="top-display-container">
+          <div class="top-display">top display</div>
+	</div>
+	<div class="bottom-display-container">
+	  <div class="bottom-display">bottom display</div>
+	</div>
       </div>
       <div class="numpad-container">
-        <div class="num-container">
-          <div class="clear">
-            <button>C/AC</button>
+        <div class="nums-container">
+          <div class="nums">
+            <button class="num">C/AC</button>
 	  </div>
-          <div class="num-7-9">
-            <button>7</button>
-            <button>8</button>
-            <button>9</button>
+          <div class="nums">
+            <button class="num">7</button>
+            <button class="num">8</button>
+            <button class="num">9</button>
 	  </div>
-	  <div class="num-4-6">
-            <button>4</button>
-            <button>5</button>
-            <button>6</button>
+	  <div class="nums">
+            <button class="num">4</button>
+            <button class="num">5</button>
+            <button class="num">6</button>
 	  </div>
-	  <div class="num-1-3">
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
+	  <div class="nums">
+            <button class="num">1</button>
+            <button class="num">2</button>
+            <button class="num">3</button>
 	  </div>
-	  <div class="num-0-.">
-	    <button>(-)</button>
-            <button>0</button>
-            <button>.</button>
+	  <div class="nums">
+	    <button class="num">(-)</button>
+            <button class="num">0</button>
+            <button class="num">.</button>
 	  </div>
 	</div>
-	<div class="operator-container">
-          <button>/</button>
-          <button>x</button>
-          <button>-</button>
-          <button>+</button>
-          <button>=</button>
+	<div class="operators-container">
+          <button class="operator">/</button>
+          <button class="operator">x</button>
+          <button class="operator">-</button>
+          <button class="operator">+</button>
+          <button class="operator">=</button>
 	</div>
       </div>
     </div>

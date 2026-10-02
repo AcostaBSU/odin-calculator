@@ -1,0 +1,69 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.calc-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+  min-width: 300px;
+}
+
+.displays-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.top-display-container,
+.bottom-display-container {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.top-display-container {
+  flex: 1;
+}
+
+.bottom-display-container {
+  flex: 3;
+}
+
+.display {
+  display: flex;
+  justify-content: end;
+  align-items
+}
+
+.numpad-container {
+  display: flex;
+  flex: 5;
+}
+
+.nums-container {
+  display: flex;
+  flex-direction: column;
+  flex: 3;
+}
+
+.nums {
+  display: flex;
+  flex: 1;
+}
+
+.num {
+  flex: 1;
+}
+
+.operators-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.operator {
+  flex: 1;
+}
