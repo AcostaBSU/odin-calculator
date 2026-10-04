@@ -9,12 +9,15 @@ body {
   flex-direction: column;
   min-height: 400px;
   min-width: 300px;
+  padding: 20px;
+  background-color: gray;
 }
 
 .displays-container {
   display: flex;
   flex-direction: column;
   flex: 1;
+  background-color: lightgray;
 }
 
 .top-display-container,
@@ -30,12 +33,18 @@ body {
 
 .bottom-display-container {
   flex: 3;
+  border-style: solid;
+  border-width: 1px 0px 0px 0px;
+  border-color: black;
+  font-size: 24px;
 }
 
-.display {
-  display: flex;
-  justify-content: end;
-  align-items
+.calc-container,
+.numpad-container,
+.nums-container,
+.operators-container,
+.nums {
+  gap: 8px;
 }
 
 .numpad-container {
