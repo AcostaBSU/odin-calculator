@@ -1,4 +1,5 @@
 function updateCurrOperand(chr) {
+  if (result != null) clearAll();
   if (Number(bottomDisplay.textContent) == 0) bottomDisplay.textContent = '';
   bottomDisplay.textContent += chr;
   currOperand = Number(bottomDisplay.textContent);
@@ -22,7 +23,7 @@ function consumeOperator(chr) {
 
 function consumeEqual() {
   eval()
-  topDisplay.textContent = `${currOperand} ${operator} ${stagedOperand}`;
+  topDisplay.textContent = `${stagedOperand} ${operator} ${currOperand}`;
   bottomDisplay.textContent = result;
 }
 
@@ -36,9 +37,24 @@ function replaceStagedOperator() {
   topDisplay.textContent = `${topDisplay.textContent.slice(0, strLength - 1)} ${operator}`;
 }
 
+function clear() {
+  if (result != null) clearAll();
+  else if (currOperand != null) clearCurr();
+  else clearAll();
+}
+
 function clearCurr() {
   bottomDisplay.textContent = '0';
   currOperand = null;
+}
+
+function clearAll() {
+  bottomDisplay.textContent = '0';
+  topDisplay.textContent = '0';
+  currOperand = null;
+  stagedOperand = null;
+  operator = '';
+  result = null;
 }
 
 function clearStaged() {
@@ -49,6 +65,7 @@ function clearStaged() {
 function saveResult() {
   bottomDisplay.textContent = result;
   currOperand = result;
+  result = null;
 }
 
 function eval() {
@@ -69,7 +86,7 @@ function eval() {
 
 const numpad = document.querySelector('.numpad-container');
 const bottomDisplay = document.querySelector('.bottom-display');
-const topDisplay = document.querySelector('.top-display')
+const topDisplay = document.querySelector('.top-display');
 let currOperand = null;
 let stagedOperand = null;
 let operator = '';
@@ -83,5 +100,8 @@ numpad.addEventListener('click', event => {
   }
   else if (target.classList.contains('equal')) {
     consumeEqual(target.textContent);
+  }
+  else if (target.classList.contains('clr')) {
+    clear();
   }
 });
