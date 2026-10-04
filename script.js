@@ -1,8 +1,26 @@
 function updateCurrOperand(chr) {
   if (result != null) clearAll();
-  if (Number(bottomDisplay.textContent) == 0) bottomDisplay.textContent = '';
+  if (!decimalUsed) updateIfZero();
   bottomDisplay.textContent += chr;
   currOperand = Number(bottomDisplay.textContent);
+}
+
+function addDecimalPoint() {
+  if (result != null) clearAll();
+  if (!decimalUsed) updateIfZero();
+
+  if (!decimalUsed) {
+    decimalUsed = true;
+    bottomDisplay.textContent += '.';
+    currOperand = Number(bottomDisplay.textContent);
+  }
+}
+
+function updateIfZero () {
+  if (Number(bottomDisplay.textContent) == 0) {
+    bottomDisplay.textContent = '';
+    decimalUsed = false;
+  }
 }
 
 function consumeOperator(chr) {
@@ -46,12 +64,12 @@ function clear() {
 function clearCurr() {
   bottomDisplay.textContent = '0';
   currOperand = null;
+  decimalUsed = false;
 }
 
 function clearAll() {
-  bottomDisplay.textContent = '0';
+  clearCurr()
   topDisplay.textContent = '0';
-  currOperand = null;
   stagedOperand = null;
   operator = '';
   result = null;
@@ -91,10 +109,12 @@ let currOperand = null;
 let stagedOperand = null;
 let operator = '';
 let result = null;
+let decimalUsed = false;
 
 numpad.addEventListener('click', event => {
   let target = event.target;
-  if (target.classList.contains('num') || target.classList.contains('dec')) updateCurrOperand(target.textContent);
+  if (target.classList.contains('num')) updateCurrOperand(target.textContent);
+  else if (target.classList.contains('dec')) addDecimalPoint();
   else if (target.classList.contains('operator')) {
     consumeOperator(target.textContent);
   }
