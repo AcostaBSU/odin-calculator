@@ -1,5 +1,5 @@
 function updateCurrOperand(chr) {
-  if (result != null) clearAll();
+  if (result = currOperand && stagedOperand != null) clearAll();
   if (!decimalUsed) updateIfZero();
   bottomDisplay.textContent += chr;
   currOperand = Number(bottomDisplay.textContent);
@@ -13,6 +13,23 @@ function addDecimalPoint() {
     decimalUsed = true;
     bottomDisplay.textContent += '.';
     currOperand = Number(bottomDisplay.textContent);
+  }
+}
+
+function applyNegative() {
+  if (!(Number(bottomDisplay.textContent) == 0 || bottomDisplay.textContent == '.')) {
+    if (bottomDisplay.textContent[0] == '-') {
+      bottomDisplay.textContent = bottomDisplay.textContent.slice(1, bottomDisplay.textContent.length);
+      currOperand = Math.abs(currOperand);
+    }
+    else {
+      bottomDisplay.textContent = '-' + bottomDisplay.textContent;
+      currOperand = -Math.abs(currOperand);
+    }
+  }
+  if (result != null) {
+    result = null;
+    clearStaged();
   }
 }
 
@@ -43,6 +60,7 @@ function consumeEqual() {
   eval()
   topDisplay.textContent = `${stagedOperand} ${operator} ${currOperand}`;
   bottomDisplay.textContent = result;
+  currOperand = result;
 }
 
 function updateStaged() {
@@ -67,11 +85,15 @@ function clearCurr() {
   decimalUsed = false;
 }
 
-function clearAll() {
-  clearCurr()
+function clearStaged() {
   topDisplay.textContent = '0';
   stagedOperand = null;
   operator = '';
+}
+
+function clearAll() {
+  clearCurr();
+  clearStaged();
   result = null;
 }
 
@@ -115,13 +137,8 @@ numpad.addEventListener('click', event => {
   let target = event.target;
   if (target.classList.contains('num')) updateCurrOperand(target.textContent);
   else if (target.classList.contains('dec')) addDecimalPoint();
-  else if (target.classList.contains('operator')) {
-    consumeOperator(target.textContent);
-  }
-  else if (target.classList.contains('equal')) {
-    consumeEqual(target.textContent);
-  }
-  else if (target.classList.contains('clr')) {
-    clear();
-  }
+  else if (target.classList.contains('neg')) applyNegative();
+  else if (target.classList.contains('operator')) consumeOperator(target.textContent);
+  else if (target.classList.contains('equal')) consumeEqual();
+  else if (target.classList.contains('clr')) clear();
 });
